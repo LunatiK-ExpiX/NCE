@@ -26,7 +26,7 @@ namespace ai {
 	constexpr inline float additional_offensive_str_factor = 0.75f;
 	constexpr inline float puppet_str_factor = 0.75f;
 	constexpr inline float safety_factor = 0.75f;
-	constexpr inline float ally_overestimate = 1.5f;
+	constexpr inline float ally_overestimate = 1.25f;
 
 	/* Sphere weights */
 	constexpr inline float sphere_already_in_our_sphere_factor = 0.5f;
