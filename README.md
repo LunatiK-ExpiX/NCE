@@ -1,8 +1,8 @@
-# Kat's PA Engine
+# New Community Engine
 
-Kat's PA Engine is a fork of the Project Alice codebase (an open source "retro clone" of Victoria 2). But more geared towards a purist audience. If you do prefer a "different" flavour of Victoria 2, feel free to checkout [Project Alice](https://github.com/schombert/Project-Alice/) too!
+The New Community Engine (or NCE) is a project made to be more stable than the contemporaries, as well as continue the work done by previous contributors. Unfortunally, the original project is long gone now, so the only project left is [Project Alice](https://github.com/schombert/Project-Alice/)
 
-Join us on [discord](https://discord.gg/3WNyk7SWvf).
+A new discord have been created here: [discord](https://discord.gg/tMtA9wFcTz).
 
 ## How to install and play
 - [Download the latest release here](https://github.com/Nivaturimika/Katerina-Engine/releases)
