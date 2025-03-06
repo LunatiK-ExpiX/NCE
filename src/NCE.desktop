@@ -1,10 +1,10 @@
 [Desktop Entry]
 Encoding=UTF-8
 Type=Application
-Version=0.1.0
-Name=Kat's PA Engine
-Icon=KatEngine
-Exec=KatEngine
+Version=1.0-beta1
+Name=New Community Engine
+Icon=NCE
+Exec=NCE
 Terminal=false
 StartupNotify=true
 Categories=Game;StrategyGame;

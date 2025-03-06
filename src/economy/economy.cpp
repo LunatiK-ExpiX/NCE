@@ -889,9 +889,9 @@ namespace economy {
 
 				/* Induce demand across all categories maybe we need some kind of banking and ability to save up money for future instead of spending them all */
 			
-				float life_needs_fraction = life_needs_budget / std::max(0.001f, ln_cost);
-				float everyday_needs_fraction = everyday_needs_budget / std::max(0.001f, en_cost);
-				float luxury_needs_fraction = luxury_needs_budget / std::max(0.001f, xn_cost);
+				float life_needs_fraction = life_needs_budget / std::max(0.0002f, ln_cost);
+				float everyday_needs_fraction = everyday_needs_budget / std::max(0.0002f, en_cost);
+				float luxury_needs_fraction = luxury_needs_budget / std::max(0.0002f, xn_cost);
 
 				float old_life = pl.get_pop().get_life_needs_satisfaction();
 				float old_everyday = pl.get_pop().get_everyday_needs_satisfaction();
