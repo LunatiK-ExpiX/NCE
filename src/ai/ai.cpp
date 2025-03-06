@@ -30,14 +30,14 @@ namespace ai {
 
 	/* Sphere weights */
 	constexpr inline float sphere_already_in_our_sphere_factor = 0.5f;
-	constexpr inline float sphere_primary_culture_factor = 100.f;
-	constexpr inline float sphere_culture_group_factor = 75.f;
+	constexpr inline float sphere_primary_culture_factor = 100.0f;
+	constexpr inline float sphere_culture_group_factor = 75.0f;
 	constexpr inline float sphere_neighbor_factor = 1.5f;
 	constexpr inline float sphere_unreachable_factor = 0.25f;
 	constexpr inline float sphere_uncivilized_factor = 1.05f;
 	constexpr inline float sphere_same_continent = 1.25f;
-	constexpr inline float sphere_avoid_distracting_cultural_leader = 0.f;
-	constexpr inline float sphere_wargoal_factor = 0.f;
+	constexpr inline float sphere_avoid_distracting_cultural_leader = 0.0f;
+	constexpr inline float sphere_wargoal_factor = 0.0f;
 
 	/* Aggression multiplier towards uncivilized nations */
 	constexpr inline float aggression_towards_unciv = 1.5f;
