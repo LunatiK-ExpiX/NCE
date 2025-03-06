@@ -43,6 +43,46 @@ jobs:
   #       name: katerina-engine-ubuntu-x86_64
   #       path: build/KatEngine
 
+  linux-x64-build:
+    strategy:
+      matrix:
+        config: [x64-release-linux-clang]
+    runs-on: [ubuntu-latest]
+    name: Linux (${{ matrix.config }})
+    steps:
+    - uses: actions/checkout@v3
+      with:
+        fetch-depth: 0
+
+    - name: Install Requirements
+      uses: awalsh128/cache-apt-pkgs-action@v1.3.1
+      with:
+        packages: git build-essential clang cmake libgl1-mesa-dev libxrandr-dev libxinerama-dev libxcursor-dev libxi-dev libicu-dev
+        version: 1.0
+
+    - name: Set Environment
+      run: |
+        echo "CC=${{ matrix.compiler == 'gcc' && 'gcc' || 'clang-15' }}" >> $GITHUB_ENV
+        echo "CXX=${{ matrix.compiler == 'gcc' && 'g++' || 'clang++-15' }}" >> $GITHUB_ENV
+
+    - name: Export GitHub Actions cache environment variables
+      uses: actions/github-script@v7
+      with:
+        script: |
+          core.exportVariable('ACTIONS_CACHE_URL', process.env.ACTIONS_CACHE_URL || '');
+          core.exportVariable('ACTIONS_RUNTIME_TOKEN', process.env.ACTIONS_RUNTIME_TOKEN || '');
+
+    - name: Configure Build Files
+      run: |
+        cmake --preset=${{ matrix.config }} -DCMAKE_BUILD_TYPE=Release -DARCHITECTURE=x64 -B build
+        cmake --build build --parallel -t KatEngine --config Release
+    - name: Archive results
+      uses: actions/upload-artifact@v4
+      with:
+        name: katerina-engine-linux-x64
+        path: build/Release/KatEngine
+
+
   windows-x64-build:
     strategy:
       matrix:
@@ -140,7 +180,7 @@ jobs:
   #         echo success
 
   build-check:
-    needs: [windows-x64-build, windows-x86-build]
+    needs: [windows-x64-build, windows-x86-build, linux-x64-build]
     runs-on: ubuntu-latest
     name: Build Matrix
     steps:
