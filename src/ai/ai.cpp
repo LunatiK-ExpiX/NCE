@@ -40,10 +40,10 @@ namespace ai {
 	constexpr inline float sphere_wargoal_factor = 0.f;
 
 	/* Aggression multiplier towards uncivilized nations */
-	constexpr inline float aggression_towards_unciv = 4.5f;
-	constexpr inline float aggression_towards_at_war = 1.1f;
-	constexpr inline float aggression_towards_rival = 5.f;
-	constexpr inline float aggression_towards_adjacent = 4.5f;
+	constexpr inline float aggression_towards_unciv = 1.5f;
+	constexpr inline float aggression_towards_at_war = 0.4f;
+	constexpr inline float aggression_towards_rival = 2.0f;
+	constexpr inline float aggression_towards_adjacent = 1.5f;
 	constexpr inline float aggression_towards_culture_group = 0.25f;
 
 	float average_army_strength(sys::state& state, dcon::army_id a) {
@@ -1016,12 +1016,12 @@ namespace ai {
 			return false;
 
 		// does the nation need the outputs of this factory?
-		if(state.world.nation_get_demand_satisfaction(n, state.world.factory_type_get_output(ft)) < 0.95f) {
+		if(state.world.nation_get_demand_satisfaction(n, state.world.factory_type_get_output(ft)) < 0.85f) {
 			auto& inputs = state.world.factory_type_get_inputs(ft);
 			for(uint32_t i = 0; i < economy::commodity_set::set_size; ++i) {
 				if(inputs.commodity_type[i]) {
 					// lacks input, do not build (early break)
-					if(state.world.nation_get_demand_satisfaction(n, inputs.commodity_type[i]) < 0.95f) {
+					if(state.world.nation_get_demand_satisfaction(n, inputs.commodity_type[i]) < 0.85f) {
 						return false;
 					}
 					continue; // -- it does not lack an input
