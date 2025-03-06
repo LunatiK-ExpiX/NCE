@@ -77,7 +77,7 @@ jobs:
         cmake --preset=${{ matrix.config }} -DCMAKE_BUILD_TYPE=Release -DARCHITECTURE=x64 -B build
         cmake --build build --parallel -t KatEngine --config Release
     - name: Archive results
-      uses: actions/upload-artifact@v4
+      uses: actions/upload-artifact@v3
       with:
         name: katerina-engine-linux-x64
         path: build/Release/KatEngine
