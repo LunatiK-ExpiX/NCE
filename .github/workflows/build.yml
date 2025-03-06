@@ -47,7 +47,10 @@ jobs:
     strategy:
       matrix:
         config: [x64-release-linux-clang]
-    runs-on: [ubuntu-latest]
+        os: [ubuntu-latest]
+
+    name: Ubuntu with ${{ matrix.compiler }} (${{ matrix.config }})
+    runs-on: ${{ matrix.os }}
     name: Linux (${{ matrix.config }})
     steps:
     - uses: actions/checkout@v3
@@ -76,11 +79,12 @@ jobs:
       run: |
         cmake --preset=${{ matrix.config }} -DCMAKE_BUILD_TYPE=Release -DARCHITECTURE=x64 -B build
         cmake --build build --parallel -t KatEngine --config Release
+
     - name: Archive results
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v4
       with:
         name: katerina-engine-linux-x64
-        path: build/Release/KatEngine
+        path: build/KatEngine
 
 
   windows-x64-build:
