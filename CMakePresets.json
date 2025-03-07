@@ -94,6 +94,7 @@
 		},
 		{
 			"name": "linux-base-x64",
+			"generator": "Ninja",
 			"inherits": "base-x64",
 			"hidden": true,
 			"cacheVariables": {
