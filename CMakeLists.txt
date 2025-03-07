@@ -4,7 +4,7 @@
 
 cmake_minimum_required (VERSION 3.15)
 
-project (ProjectKatEngine LANGUAGES CXX C)
+project (ProjectNCE LANGUAGES CXX C)
 set(CMAKE_CXX_STANDARD 20 CACHE STRING "The C++ standard to use")
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
@@ -135,13 +135,13 @@ else()
 endif()
 
 if(WIN32)
-	add_executable(KatEngine WIN32
+	add_executable(NCE WIN32
 		${ALICE_CORE_SOURCES_LIST}
 		"${PROJECT_SOURCE_DIR}/src/entry_point_win.cpp"
-		"${PROJECT_SOURCE_DIR}/src/KatEngine.rc"
+		"${PROJECT_SOURCE_DIR}/src/NCE.rc"
 		${ASSET_FILES})
 else()
-	add_executable(KatEngine WIN32
+	add_executable(NCE WIN32
 		${ALICE_CORE_SOURCES_LIST}
 		"${PROJECT_SOURCE_DIR}/src/entry_point_nix.cpp"
 		${ASSET_FILES})
@@ -152,16 +152,16 @@ add_subdirectory(dependencies)
 add_subdirectory(ParserGenerator)
 add_subdirectory(DconGenerator)
 
-add_library(KatEngineCommon INTERFACE)
-target_compile_definitions(KatEngineCommon INTERFACE "PROJECT_ROOT=\"${PROJECT_SOURCE_DIR}\"")
+add_library(NCECommon INTERFACE)
+target_compile_definitions(NCECommon INTERFACE "PROJECT_ROOT=\"${PROJECT_SOURCE_DIR}\"")
 if(ARCHITECTURE STREQUAL "x64")
-	target_compile_definitions(KatEngineCommon INTERFACE __x86_64__)
+	target_compile_definitions(NCECommon INTERFACE __x86_64__)
 elseif(ARCHITECTURE STREQUAL "x86")
-	target_compile_definitions(KatEngineCommon INTERFACE __i686__)
+	target_compile_definitions(NCECommon INTERFACE __i686__)
 elseif(ARCHITECTURE STREQUAL "aarch64")
-	target_compile_definitions(KatEngineCommon INTERFACE __aarch64__)
+	target_compile_definitions(NCECommon INTERFACE __aarch64__)
 elseif(ARCHITECTURE STREQUAL "riscv64")
-	target_compile_definitions(KatEngineCommon INTERFACE __riscv64__)
+	target_compile_definitions(NCECommon INTERFACE __riscv64__)
 endif()
 if(WIN32)
 	# string(REPLACE "/GR" "" CMAKE_CXX_FLAGS ${CMAKE_CXX_FLAGS})
@@ -180,88 +180,88 @@ if(WIN32)
 	#set(CMAKE_MSVC_RUNTIME_LIBRARY "MultiThreaded$<$<CONFIG:Debug>:Debug>")
 
 	if (CMAKE_CXX_COMPILER_ID STREQUAL "Clang")
-		target_compile_options(KatEngineCommon INTERFACE /bigobj /wd4100 /wd4189 /wd4065 /wd4201 /wd4324 /GR- /W4 /permissive- /GF /w34388 /w34389 -Wno-unused-macros -Wno-zero-length-array -Wno-switch-default -Wno-reserved-identifier -Wno-unused-parameter -Wno-unused-variable -Wno-unused-private-field /Z7 -Wno-invalid-offsetof -Wno-deprecated-volatile -Wno-missing-prototypes -Wno-reserved-identifier -Wno-implicit-int-float-conversion -Wno-unsafe-buffer-usage -Wno-float-equal -Wno-shadow-field-in-constructor -Wno-gnu-anonymous-struct -Wno-nested-anon-types -Wno-double-promotion -Wno-shadow-uncaptured-local -Wno-nonportable-system-include-path -Wno-format-nonliteral -Wno-shorten-64-to-32 -Wno-ctad-maybe-unsupported -Wno-implicit-int-conversion -Wno-disabled-macro-expansion -Wno-comma -Wno-cast-function-type-strict -Wno-cast-function-type)
+		target_compile_options(NCECommon INTERFACE /bigobj /wd4100 /wd4189 /wd4065 /wd4201 /wd4324 /GR- /W4 /permissive- /GF /w34388 /w34389 -Wno-unused-macros -Wno-zero-length-array -Wno-switch-default -Wno-reserved-identifier -Wno-unused-parameter -Wno-unused-variable -Wno-unused-private-field /Z7 -Wno-invalid-offsetof -Wno-deprecated-volatile -Wno-missing-prototypes -Wno-reserved-identifier -Wno-implicit-int-float-conversion -Wno-unsafe-buffer-usage -Wno-float-equal -Wno-shadow-field-in-constructor -Wno-gnu-anonymous-struct -Wno-nested-anon-types -Wno-double-promotion -Wno-shadow-uncaptured-local -Wno-nonportable-system-include-path -Wno-format-nonliteral -Wno-shorten-64-to-32 -Wno-ctad-maybe-unsupported -Wno-implicit-int-conversion -Wno-disabled-macro-expansion -Wno-comma -Wno-cast-function-type-strict -Wno-cast-function-type)
 		if(ARCHITECTURE STREQUAL "x64")
-			target_compile_options(KatEngineCommon INTERFACE /d2archSSE42)
+			target_compile_options(NCECommon INTERFACE /d2archSSE42)
 		else()
-			target_compile_options(KatEngineCommon INTERFACE /D__SSE3__)
+			target_compile_options(NCECommon INTERFACE /D__SSE3__)
 		endif()
 		if(OPTIMIZE_MODE STREQUAL "On")
 			message(STATUS "Optimizing with PGO data")
-			target_compile_options(KatEngineCommon INTERFACE /DNDEBUG /wd4530 /MT /O2 /Oi /sdl- /GS- /Gy /Gw /Zc:inline -Wno-profile-instr-missing -Wno-profile-instr-out-of-date -fprofile-instr-use=code.profdata)
-			target_link_options(KatEngineCommon INTERFACE /OPT:REF /OPT:ICF /LTCG -fprofile-instr-use=code.profdata)
+			target_compile_options(NCECommon INTERFACE /DNDEBUG /wd4530 /MT /O2 /Oi /sdl- /GS- /Gy /Gw /Zc:inline -Wno-profile-instr-missing -Wno-profile-instr-out-of-date -fprofile-instr-use=code.profdata)
+			target_link_options(NCECommon INTERFACE /OPT:REF /OPT:ICF /LTCG -fprofile-instr-use=code.profdata)
 		elseif(PROFILE_MODE STREQUAL "On")
 			message(STATUS "Compiling for PGO instrumentation")
-			target_compile_options(KatEngineCommon INTERFACE /DNDEBUG /wd4530 /MT /O2 /Oi /sdl- /GS- /Gy /Gw /Zc:inline -fprofile-instr-generate)
-			target_link_options(KatEngineCommon INTERFACE /DEBUG:FULL /OPT:REF /OPT:ICF /LTCG -fprofile-instr-generate)
+			target_compile_options(NCECommon INTERFACE /DNDEBUG /wd4530 /MT /O2 /Oi /sdl- /GS- /Gy /Gw /Zc:inline -fprofile-instr-generate)
+			target_link_options(NCECommon INTERFACE /DEBUG:FULL /OPT:REF /OPT:ICF /LTCG -fprofile-instr-generate)
 		else()
-			target_compile_options(KatEngineCommon INTERFACE
+			target_compile_options(NCECommon INTERFACE
 				$<$<CONFIG:Debug>:			/RTC1 /EHsc /MTd /Od>
 				$<$<NOT:$<CONFIG:Debug>>: 	/DNDEBUG /wd4530 /MT /O2 /Oi /sdl- /GS- /Gy /Gw /Zc:inline>)
-			target_link_options(KatEngineCommon INTERFACE
+			target_link_options(NCECommon INTERFACE
 				$<$<CONFIG:Debug>: 			/DEBUG:FULL>
 				$<$<NOT:$<CONFIG:Debug>>: 	/OPT:REF /OPT:ICF /LTCG>)
 		endif()
 	else()
-		set_target_properties(KatEngineCommon PROPERTIES RUNTIME_OUTPUT_DIRECTORY_DEBUG ${CMAKE_CURRENT_BINARY_DIR})
-		target_compile_options(KatEngineCommon INTERFACE /bigobj /wd4100 /wd4189 /wd4065 /wd4201 /wd4324 /wd4723 /GR- /W4 /permissive- /Zc:preprocessor /GF /w34388 /w34389)
+		set_target_properties(NCECommon PROPERTIES RUNTIME_OUTPUT_DIRECTORY_DEBUG ${CMAKE_CURRENT_BINARY_DIR})
+		target_compile_options(NCECommon INTERFACE /bigobj /wd4100 /wd4189 /wd4065 /wd4201 /wd4324 /wd4723 /GR- /W4 /permissive- /Zc:preprocessor /GF /w34388 /w34389)
 		if(ARCHITECTURE STREQUAL "x64")
-			target_compile_options(KatEngineCommon INTERFACE /d2archSSE42)
+			target_compile_options(NCECommon INTERFACE /d2archSSE42)
 		else()
-			target_compile_options(KatEngineCommon INTERFACE /arch:SSE2 /D__SSE3__)
+			target_compile_options(NCECommon INTERFACE /arch:SSE2 /D__SSE3__)
 		endif()
 		if(OPTIMIZE_MODE STREQUAL "On")
 			message(STATUS "Optimizing with PGO data")
-			target_compile_options(KatEngineCommon INTERFACE /DNDEBUG /wd4530 /MT /O2 /Oi /GL /sdl- /GS- /Gy /Gw /Zc:inline)
-			target_link_options(KatEngineCommon INTERFACE /OPT:REF /OPT:ICF /LTCG /USEPROFILE)
+			target_compile_options(NCECommon INTERFACE /DNDEBUG /wd4530 /MT /O2 /Oi /GL /sdl- /GS- /Gy /Gw /Zc:inline)
+			target_link_options(NCECommon INTERFACE /OPT:REF /OPT:ICF /LTCG /USEPROFILE)
 		elseif(PROFILE_MODE STREQUAL "On")
 			message(STATUS "Compiling for PGO instrumentation")
-			target_compile_options(KatEngineCommon INTERFACE /Z7 /DNDEBUG /wd4530 /MT /O2 /Oi /GL /sdl- /GS- /Gy /Gw /Zc:inline)
-			target_link_options(KatEngineCommon INTERFACE /DEBUG:FULL /OPT:REF /OPT:ICF /LTCG /GENPROFILE)
+			target_compile_options(NCECommon INTERFACE /Z7 /DNDEBUG /wd4530 /MT /O2 /Oi /GL /sdl- /GS- /Gy /Gw /Zc:inline)
+			target_link_options(NCECommon INTERFACE /DEBUG:FULL /OPT:REF /OPT:ICF /LTCG /GENPROFILE)
 		else()
 			message(STATUS "Normal, not PGO, build")
 			# for faster debug builds, replace /RTC1 /Od with /O1 -- should be able to use /Ox, but for some reason that crashes ZSTD
-			target_compile_options(KatEngineCommon INTERFACE /Z7
+			target_compile_options(NCECommon INTERFACE /Z7
 				$<$<CONFIG:Debug>:			/EHsc /MTd /O1>
 				$<$<NOT:$<CONFIG:Debug>>: 	/DNDEBUG /wd4530 /MT /O2 /Oi /GL /sdl- /GS- /Gy /Gw /Zc:inline>)
-			target_link_options(KatEngineCommon INTERFACE
+			target_link_options(NCECommon INTERFACE
 				$<$<CONFIG:Debug>: 			/DEBUG:FULL>
 				$<$<NOT:$<CONFIG:Debug>>: 	/DEBUG:FULL /OPT:REF /OPT:ICF /LTCG>)
 			if(ARCHITECTURE STREQUAL "x86")
-				target_link_options(KatEngineCommon INTERFACE /INCREMENTAL:NO /NODEFAULTLIB:MSVCRT)
+				target_link_options(NCECommon INTERFACE /INCREMENTAL:NO /NODEFAULTLIB:MSVCRT)
 			endif()
 		endif()
 	endif()
 else() # GCC or CLANG
 	# See for FMA support: https://stackoverflow.com/questions/21001388/fma3-in-gcc-how-to-enable
-	target_compile_options(KatEngineCommon INTERFACE -Wall -Wextra -Wpedantic -Wno-unused-parameter -Wno-unused-variable -Wno-switch -Wno-unused-private-field)
-	target_compile_options(KatEngineCommon INTERFACE -fpermissive)
-	target_compile_options(KatEngineCommon INTERFACE $<$<CONFIG:Debug>: -O1 -g -pipe>)
-	target_compile_options(KatEngineCommon INTERFACE $<$<NOT:$<CONFIG:Debug>>: -O3 -pipe -fno-rtti -DNDEBUG>)
+	target_compile_options(NCECommon INTERFACE -Wall -Wextra -Wpedantic -Wno-unused-parameter -Wno-unused-variable -Wno-switch -Wno-unused-private-field)
+	target_compile_options(NCECommon INTERFACE -fpermissive)
+	target_compile_options(NCECommon INTERFACE $<$<CONFIG:Debug>: -O1 -g -pipe>)
+	target_compile_options(NCECommon INTERFACE $<$<NOT:$<CONFIG:Debug>>: -O3 -pipe -fno-rtti -DNDEBUG>)
 	if(ARCHITECTURE STREQUAL "x64" OR ARCHITECTURE STREQUAL "x86")
-		target_compile_options(KatEngineCommon INTERFACE -mfpmath=sse -msse4.2)
+		target_compile_options(NCECommon INTERFACE -mfpmath=sse -msse4.2)
 	endif()
 endif()
 
-target_link_libraries(KatEngineCommon INTERFACE dependency_freetype)
-target_link_libraries(KatEngineCommon INTERFACE dependency_harfbuzz)
-target_link_libraries(KatEngineCommon INTERFACE glm)
-target_link_libraries(KatEngineCommon INTERFACE dependency_icu)
+target_link_libraries(NCECommon INTERFACE dependency_freetype)
+target_link_libraries(NCECommon INTERFACE dependency_harfbuzz)
+target_link_libraries(NCECommon INTERFACE glm)
+target_link_libraries(NCECommon INTERFACE dependency_icu)
 if (WIN32)
-	target_link_libraries(KatEngineCommon INTERFACE ws2_32)
-	target_link_libraries(KatEngineCommon INTERFACE wsock32)
+	target_link_libraries(NCECommon INTERFACE ws2_32)
+	target_link_libraries(NCECommon INTERFACE wsock32)
 else()
 	if(ARCHITECTURE STREQUAL "x64" OR ARCHITECTURE STREQUAL "x86")
-		target_link_libraries(KatEngineCommon INTERFACE dependency_tbb)
+		target_link_libraries(NCECommon INTERFACE dependency_tbb)
 		add_compile_definitions(PREFER_ONE_TBB)
 	else()
 		message(STATUS "Non-x86 based architecture, disabling TBB")
-		target_link_libraries(KatEngineCommon INTERFACE stdc++)
+		target_link_libraries(NCECommon INTERFACE stdc++)
 	endif()
-	target_link_libraries(KatEngineCommon INTERFACE glfw)
-	target_link_libraries(KatEngineCommon INTERFACE miniaudio)
+	target_link_libraries(NCECommon INTERFACE glfw)
+	target_link_libraries(NCECommon INTERFACE miniaudio)
 endif()
-target_include_directories(KatEngineCommon INTERFACE
+target_include_directories(NCECommon INTERFACE
 	${PROJECT_SOURCE_DIR}/src
 	${PROJECT_SOURCE_DIR}/src/ai
 	${PROJECT_SOURCE_DIR}/src/common_types
@@ -290,10 +290,10 @@ target_include_directories(KatEngineCommon INTERFACE
 	${PROJECT_SOURCE_DIR}/src/news
 	"ankerl")
 
-target_link_libraries(KatEngine PRIVATE KatEngineCommon)
+target_link_libraries(NCE PRIVATE NCECommon)
 
 # System headers
-target_precompile_headers(KatEngine
+target_precompile_headers(NCE
 	PRIVATE <stddef.h>
 	PRIVATE <stdint.h>
 	PRIVATE <assert.h>
@@ -304,7 +304,7 @@ target_precompile_headers(KatEngine
 	PRIVATE <ctype.h>
 )
 # Standard C++ library headers
-target_precompile_headers(KatEngine
+target_precompile_headers(NCE
 	PRIVATE <vector>
 	PRIVATE <array>
 	PRIVATE <optional>
@@ -325,7 +325,7 @@ target_precompile_headers(KatEngine
 	PRIVATE <iterator>
 )
 # Aliases for C library
-target_precompile_headers(KatEngine
+target_precompile_headers(NCE
 	PRIVATE <cstdlib>
 	PRIVATE <cstddef>
 	PRIVATE <cstdint>
@@ -333,8 +333,8 @@ target_precompile_headers(KatEngine
 	PRIVATE <cstdarg>
 	PRIVATE <cmath>
 )
-# KatEngine provided headers
-target_precompile_headers(KatEngine
+# NCE provided headers
+target_precompile_headers(NCE
 	PRIVATE [["simple_fs.hpp"]]
 	PRIVATE [["constants.hpp"]]
 	PRIVATE [["unordered_dense.h"]]
@@ -345,13 +345,13 @@ target_precompile_headers(KatEngine
 	PRIVATE [["date_interface.hpp"]]
 	PRIVATE [["stb_image.h"]]
 )
-target_precompile_headers(KatEngine
+target_precompile_headers(NCE
 	PRIVATE [["system_state.hpp"]]
 )
 
 if(WIN32)
 else()
-	target_precompile_headers(KatEngine
+	target_precompile_headers(NCE
 		PRIVATE [["miniaudio.h"]]
 	)
 endif()
@@ -369,7 +369,7 @@ add_custom_command(
 if(NOT(CROSS_COMPILE))
 	# Sets a dependency on the generated file
 	add_custom_target(GENERATE_CONTAINER DEPENDS ${CONTAINER_PATH}.hpp)
-	add_dependencies(KatEngine GENERATE_CONTAINER ParserGenerator)
+	add_dependencies(NCE GENERATE_CONTAINER ParserGenerator)
 endif()
 
 # The command to build the generated parsers file
@@ -445,7 +445,7 @@ add_custom_target(GENERATE_PARSERS DEPENDS
 	${PROJECT_SOURCE_DIR}/src/parsing/game_rules_parser_defs_generated.hpp
 	${PROJECT_SOURCE_DIR}/src/text/bmfont_defs_generated.hpp
 	${PROJECT_SOURCE_DIR}/src/text/font_defs_generated.hpp)
-add_dependencies(KatEngine GENERATE_PARSERS)
+add_dependencies(NCE GENERATE_PARSERS)
 
 if(ARCHITECTURE STREQUAL "x64" OR ARCHITECTURE STREQUAL "x86")
 	add_subdirectory(SaveEditor)
@@ -457,14 +457,14 @@ if(ARCHITECTURE STREQUAL "x64" OR ARCHITECTURE STREQUAL "x86")
 		add_subdirectory(tests)
 	endif()
 	if(WIN32)
-		add_subdirectory(DbgKatEngine)
+		add_subdirectory(DbgNCE)
 		add_subdirectory(Launcher)
 	endif()
 endif()
 
 # Installation
 if(NOT WIN32)
-    install(FILES ${PROJECT_SOURCE_DIR}/src/KatEngine.desktop DESTINATION /usr/share/applications)
-    install(FILES ${PROJECT_SOURCE_DIR}/src/KatEngine.png DESTINATION /usr/share/icons/hicolor/512x512/apps)
+    install(FILES ${PROJECT_SOURCE_DIR}/src/NCE.desktop DESTINATION /usr/share/applications)
+    install(FILES ${PROJECT_SOURCE_DIR}/src/NCE.png DESTINATION /usr/share/icons/hicolor/512x512/apps)
 endif()
 
