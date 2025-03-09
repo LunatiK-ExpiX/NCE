@@ -864,7 +864,7 @@ namespace launcher {
 		case ui_obj_join_game:
 		{
 			native_string mod_path = produce_mod_path();
-			native_string temp_command_line = native_string(NATIVE("KatEngine.exe -autofind -path "));
+			native_string temp_command_line = native_string(NATIVE("NCE.exe -autofind -path "));
 			temp_command_line += NATIVE("\"") + mod_path + NATIVE("\"");
 
 			for(auto const& mod : mod_list) {
