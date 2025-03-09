@@ -25,7 +25,7 @@ add_executable(tests_project
 	"${PROJECT_SOURCE_DIR}/src/map/map_borders.cpp"
 	"${PROJECT_SOURCE_DIR}/src/map/map.cpp"
 	"${PROJECT_SOURCE_DIR}/src/graphics/xac.cpp"
-	"${PROJECT_SOURCE_DIR}/src/KatEngine.rc")
+	"${PROJECT_SOURCE_DIR}/src/NCE.rc")
 else()
 add_executable(tests_project
 	${TESTS_CORE_SOURCES_LIST}
@@ -37,7 +37,7 @@ add_executable(tests_project
 	"${PROJECT_SOURCE_DIR}/src/map/map.cpp"
 	"${PROJECT_SOURCE_DIR}/src/graphics/xac.cpp")
 endif()
-target_link_libraries(tests_project PRIVATE KatEngineCommon)
+target_link_libraries(tests_project PRIVATE NCECommon)
 
 FetchContent_MakeAvailable(Catch2)
 
@@ -64,7 +64,7 @@ add_dependencies(tests_project GENERATE_PARSERS)
 add_dependencies(tests_project GENERATE_CONTAINER ParserGenerator)
 
 target_compile_definitions(tests_project PUBLIC ALICE_NO_ENTRY_POINT)
-#target_precompile_headers(tests_project REUSE_FROM KatEngine)
+#target_precompile_headers(tests_project REUSE_FROM NCE)
 
 list(APPEND CMAKE_MODULE_PATH ${catch2_SOURCE_DIR}/contrib)
 list(APPEND CMAKE_MODULE_PATH ${Catch2_SOURCE_DIR}/extras)

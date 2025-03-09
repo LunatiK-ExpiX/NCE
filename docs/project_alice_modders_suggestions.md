@@ -1,10 +1,10 @@
 ## Identified issues
 
-Some issues are solved by Kat's PA Engine already, some aren't, feel free to add your bitter experiences below for consideration post-1.0:
+Some issues are solved by NCE already, some aren't, feel free to add your bitter experiences below for consideration post-1.0:
 
 - No first-hand support for dynamic localisation (without using change_region_name)
 - Trade window only supports N number of goods before it overflows
-- Undocumented (KatEngine lists all of them by the way) and inconsistent modifiers (some that can only be used on technologies and inventions)
+- Undocumented (NCE lists all of them by the way) and inconsistent modifiers (some that can only be used on technologies and inventions)
 - Have to add 1 technology for each folder so the UI doesn't break
 - Selecting which wars to call an ally into
 
@@ -37,7 +37,7 @@ This list may or may not be out of date, it's wise to check the mods yourself fo
 
 (The links provided are the exact versions being tested).
 
-# Kat's PA Engine Community modding Suggestions
+# NCE Community modding Suggestions
 
 **General Prompt give to each modder for referance**
 Been asking for suggestion that modders might have wanted for Vic2 moddability since there is another OpenV2 attempt, idk if it will work but I want to help them where I can

@@ -1341,7 +1341,7 @@ static GLfloat global_square_left_flipped_data[16] = { 0.0f, 0.0f, 1.0f, 1.0f, 0
 
 		launcher::ogl::render_textured_rect(launcher::ogl::color_modification::none, 0, 0, int32_t(base_width), int32_t(base_height), bg_tex.get_texture_handle(), ui::rotation::upright, false);
 
-		launcher::ogl::render_new_text("Kat's PA Engine", launcher::ogl::color_modification::none, 83, 5, 26, launcher::ogl::color3f{ 255.0f / 255.0f, 230.0f / 255.0f, 153.0f / 255.0f }, fonts[1]);
+		launcher::ogl::render_new_text("NCE", launcher::ogl::color_modification::none, 83, 5, 26, launcher::ogl::color3f{ 255.0f / 255.0f, 230.0f / 255.0f, 153.0f / 255.0f }, fonts[1]);
 
 		// bottom right corner
 		std::string version_text = "v" + std::to_string(sys::scenario_file_version);
@@ -1992,7 +1992,7 @@ int WINAPI wWinMain(
 	launcher::m_hwnd = CreateWindowEx(
 		0,
 		L"alice_launcher_class",
-		L"Launch Kat's PA Engine",
+		L"Launch NCE",
 		WS_VISIBLE | WS_CAPTION | WS_MINIMIZEBOX | WS_THICKFRAME | WS_SYSMENU | WS_CLIPCHILDREN | WS_CLIPSIBLINGS,
 		CW_USEDEFAULT,
 		CW_USEDEFAULT,

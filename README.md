@@ -6,9 +6,9 @@ A new discord have been created here: [discord](https://discord.gg/tMtA9wFcTz).
 
 ## How to install and play
 - [Download the latest release here](https://github.com/Nivaturimika/Katerina-Engine/releases)
-- Extract the archive and move the executable files and the assets folder into your main Victoria 2 directory. In other words, **KatEngine.exe should end up in the same folder as v2game.exe**.
+- Extract the archive and move the executable files and the assets folder into your main Victoria 2 directory. In other words, **NCE.exe should end up in the same folder as v2game.exe**.
 - IF YOU INSTALLED A PREVIOUS DEMO OR RELEASE: I suggest that you delete it and the old assets folder before copying over the new one, as an extra precaution.
-- Start the game by running KatEngine_Launcher.exe.
+- Start the game by running NCE_Launcher.exe.
 - Mods may or may not run with more or less problems (see the October update and the compatibility patches channel in the discord for more information about particular mods).
 - Read up the [User and multiplayer guide](https://github.com/Nivaturimika/Katerina-Engine/blob/main/docs/user_guide.md) for further information and troubleshooting
 
@@ -64,7 +64,7 @@ yay cmake onetbb
 ```
 
 From here compiling is straightforward
-1. `cd Project-KatEngine`
+1. `cd Project-NCE`
 2. do something to make the debugger launch the program in your V2 directory so that it can find the game files (I don't know how this is done on linux)
 4. `cmake -B build . -DCMAKE_BUILD_TYPE=Debug -DARCHITECTURE=x64`
 5. `cmake --build build -j$(nproc)`
@@ -90,7 +90,7 @@ If you manage to build this shit in MacOS, tell me how you had such patience and
 
 Because the project in its current state needs to use the existing game files (as a source of graphics, for starters), everyone needs to tell the compiler where their copy of the game is installed and to put the new files in that directory as well.
 
-Copy the assets folder to your V2 directory. **Note: when the asset files are updated by you or someone else you will need to copy any changed files to your V2 directory and rebuild any scenarios. Not doing so will probably result in crashes**. Then, you will need to configure your debugger to launch KatEngine and the Launcher *as if* they were located in your V2 directory. For visual studio and visual studio code you can do that by creating a launch configuration file. (See [here for Visual Studio](https://learn.microsoft.com/en-us/visualstudio/ide/customize-build-and-debug-tasks-in-visual-studio?view=vs-2022) and [here for VS code](https://code.visualstudio.com/docs/cpp/launch-json-reference)). The contents of that file will look something like mine (copied below) except with the directory location changed to point to your V2 directory.
+Copy the assets folder to your V2 directory. **Note: when the asset files are updated by you or someone else you will need to copy any changed files to your V2 directory and rebuild any scenarios. Not doing so will probably result in crashes**. Then, you will need to configure your debugger to launch NCE and the Launcher *as if* they were located in your V2 directory. For visual studio and visual studio code you can do that by creating a launch configuration file. (See [here for Visual Studio](https://learn.microsoft.com/en-us/visualstudio/ide/customize-build-and-debug-tasks-in-visual-studio?view=vs-2022) and [here for VS code](https://code.visualstudio.com/docs/cpp/launch-json-reference)). The contents of that file will look something like mine (copied below) except with the directory location changed to point to your V2 directory.
 
 ```
 {
@@ -100,15 +100,15 @@ Copy the assets folder to your V2 directory. **Note: when the asset files are up
     {
       "type": "default",
       "project": "CMakeLists.txt",
-      "projectTarget": "KatEngine_Launcher.exe (Launcher\\KatEngine_Launcher.exe)",
-      "name": "KatEngine_Launcher.exe (Launcher\\KatEngine_Launcher.exe)",
+      "projectTarget": "NCE_Launcher.exe (Launcher\\NCE_Launcher.exe)",
+      "name": "NCE_Launcher.exe (Launcher\\NCE_Launcher.exe)",
       "currentDir": "C:\\programs\\V2"
     },
     {
       "type": "default",
       "project": "CMakeLists.txt",
-      "projectTarget": "KatEngine.exe",
-      "name": "KatEngine.exe",
+      "projectTarget": "NCE.exe",
+      "name": "NCE.exe",
       "currentDir": "C:\\programs\\V2",
       "args": [
         ""

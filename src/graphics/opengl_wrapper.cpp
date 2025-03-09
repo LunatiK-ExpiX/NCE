@@ -954,7 +954,7 @@ namespace ogl {
 		// The color variables are unused currently.
 		//
 		// Spacing, kearning, etc. are already applied.
-		// Scaling (unintentionally) is also applied (by whatever part of KatEngine scales the normal fonts).
+		// Scaling (unintentionally) is also applied (by whatever part of NCE scales the normal fonts).
 		glBindTexture(GL_TEXTURE_2D, font.ftexid);
 		glUniform3f(state.open_gl.ui_shader_inner_color_uniform, c.r, c.g, c.b);
 		for(uint32_t i = 0; i < count; ++i) {

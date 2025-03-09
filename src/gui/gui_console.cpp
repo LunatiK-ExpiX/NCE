@@ -80,7 +80,7 @@ inline constexpr command_info possible_commands[] = {
 		command_info::argument_info{},
 		command_info::argument_info{}
 	}},
-	command_info{"reload", command_info::type::reload, "Reloads KatEngine", {
+	command_info{"reload", command_info::type::reload, "Reloads NCE", {
 		command_info::argument_info{},
 		command_info::argument_info{},
 		command_info::argument_info{},
@@ -1281,7 +1281,7 @@ void ui::console_edit::edit_box_enter(sys::state& state, std::string_view s) noe
 		state.debug_save_oos_dump();
 		state.debug_scenario_oos_dump();
 		state.debug_unsaved_oos_dump();
-		log_to_console(state, parent, "Check \"My Documents\\Kat's PA Engine\\oos\\\" for the OOS dump");
+		log_to_console(state, parent, "Check \"My Documents\\NCE\\oos\\\" for the OOS dump");
 		window::change_cursor(state, window::cursor_type::normal);
 		break;
 	}
