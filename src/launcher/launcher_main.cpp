@@ -130,6 +130,21 @@ namespace launcher {
 		"Partecipare",
 		"Elenco delle mods"
 	};
+	//japanese -- I can't verify if this is totally correct, so reach out to the discord account expix to let me know of any inaccuracies
+	static std::string_view en_localised_strings[uint8_t(string_index::count)] = {
+		"シナリオする",
+		"シナリオ再現する",
+		"作成ている",
+		"IPアドレス",
+		"パスワード",
+		"愛称",
+		"シングルプレイヤ",
+		"マルチプレイヤ",
+		"開始遊",
+		"ホスト遊",
+		"ジョイン遊",
+		"MOD列記"
+	};
 	//french
 	static std::string_view fr_localised_strings[uint8_t(string_index::count)] = {
 		"Creer un scènario",
@@ -1623,7 +1638,7 @@ static GLfloat global_square_left_flipped_data[16] = { 0.0f, 0.0f, 1.0f, 1.0f, 0
 				localised_strings = &it_localised_strings[0];
 				break;
 			case 0x0011:
-				//localised_strings = &ja_localised_strings[0];
+				localised_strings = &ja_localised_strings[0];
 				break;
 			case 0x0012:
 				//localised_strings = &ko_localised_strings[0];
