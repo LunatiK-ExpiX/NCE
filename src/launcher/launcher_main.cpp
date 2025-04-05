@@ -131,7 +131,7 @@ namespace launcher {
 		"Elenco delle mods"
 	};
 	//japanese -- I can't verify if this is totally correct, so reach out to the discord account expix to let me know of any inaccuracies
-	static std::string_view en_localised_strings[uint8_t(string_index::count)] = {
+	static std::string_view jp_localised_strings[uint8_t(string_index::count)] = {
 		"シナリオする",
 		"シナリオ再現する",
 		"作成ている",
