@@ -235,21 +235,6 @@ namespace launcher {
 		"ينضم",
 		"قائمة وزارة الدٝاع",
 	};
-	/* 	This is a translation that might be slightly better, may fix some broken letters
-		"إنشاء السيناريو"،
-		"إعادة إنشاء السيناريو"،
-		"العمل"،
-		"عنوان IP"،
-		"كلمة المرور"،
-		"اللقب"،
-		"لاعب واحد"،
-		"متعددة اللاعبين"،
-		"بدء اللعبة"،
-		"المضيف"،
-		"الانضمام"،
-		"الانضمام"، 
-		"قائمة التعديل",
-	*/
 	//norwegian
 	static std::string_view no_localised_strings[uint8_t(string_index::count)] = {
 		"Lag scenario",
