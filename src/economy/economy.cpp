@@ -2511,7 +2511,7 @@ namespace economy {
 			} else {
 				for(uint32_t j = 0; j < commodity_set::set_size && all_finished; ++j) {
 					if(base_cost.commodity_type[j]) {
-						if(current_purchased.commodity_amounts[j] < base_cost.commodity_amounts[j] * cost_mod) {
+						if(current_purchased.commodity_amounts[j] + 0.1f < base_cost.commodity_amounts[j] * cost_mod) {
 							all_finished = false;
 						}
 					} else {
