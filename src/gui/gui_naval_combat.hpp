@@ -539,7 +539,7 @@ namespace ui {
 		public:
 		std::unique_ptr<element_base> make_child(sys::state& state, std::string_view name, dcon::gui_def_id id) noexcept override {
 			if(name == "shield") {
-				return make_element_by_type<nc_attacker_flag>(state, id);
+				return make_element_by_type<nc_defender_flag>(state, id);
 			} else if(name == "leader_icon") {
 				return make_element_by_type<nc_attacker_leader_img>(state, id);
 			} else if(name == "leader_name") {
@@ -578,7 +578,7 @@ namespace ui {
 		public:
 		std::unique_ptr<element_base> make_child(sys::state& state, std::string_view name, dcon::gui_def_id id) noexcept override {
 			if(name == "shield") {
-				return make_element_by_type<nc_defender_flag>(state, id);
+				return make_element_by_type<nc_attacker_flag>(state, id);
 			} else if(name == "leader_icon") {
 				return make_element_by_type<nc_defending_leader_img>(state, id);
 			} else if(name == "leader_name") {
