@@ -46,7 +46,7 @@ jobs:
   linux-x64-build:
     strategy:
       matrix:
-        config: [x64-release-linux-clang]
+        config: [x64-release-linux]
         os: [ubuntu-latest]
 
     name: Ubuntu (${{ matrix.config }})
@@ -59,13 +59,13 @@ jobs:
     - name: Install Requirements
       uses: awalsh128/cache-apt-pkgs-action@v1.4.3
       with:
-        packages: git build-essential clang cmake libgl1-mesa-dev libxrandr-dev libxinerama-dev libxcursor-dev libxi-dev libicu-dev ninja-build
+        packages: git build-essential gcc cmake libgl1-mesa-dev libxrandr-dev libxinerama-dev libxcursor-dev libxi-dev libicu-dev ninja-build
         version: 1.0
 
     - name: Set Environment
       run: |
-        echo "CC=${{ matrix.compiler == 'gcc' && 'gcc' || 'clang-15' }}" >> $GITHUB_ENV
-        echo "CXX=${{ matrix.compiler == 'gcc' && 'g++' || 'clang++-15' }}" >> $GITHUB_ENV
+        echo "CC=${{ matrix.compiler == 'gcc' && 'gcc' || 'gcc' }}" >> $GITHUB_ENV
+        echo "CXX=${{ matrix.compiler == 'gcc' && 'g++' || 'gcc' }}" >> $GITHUB_ENV
 
     - name: Configure Build Files
       run: |
