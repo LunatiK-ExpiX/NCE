@@ -94,12 +94,11 @@
 		},
 		{
 			"name": "linux-base-x64",
-			"generator": "Ninja",
 			"inherits": "base-x64",
 			"hidden": true,
 			"cacheVariables": {
-				"CMAKE_C_COMPILER": "clang",
-				"CMAKE_CXX_COMPILER": "clang++"
+				"CMAKE_C_COMPILER": "gcc",
+				"CMAKE_CXX_COMPILER": "gcc"
 			},
 			"condition": {
 				"type": "equals",
