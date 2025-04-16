@@ -179,7 +179,7 @@ if(WIN32)
 	set(CMAKE_CXX_FLAGS_RELEASE "")
 	#set(CMAKE_MSVC_RUNTIME_LIBRARY "MultiThreaded$<$<CONFIG:Debug>:Debug>")
 
-	if (CMAKE_CXX_COMPILER_ID STREQUAL "Clang")
+	if (CMAKE_CXX_COMPILER_ID STREQUAL "gcc")
 		target_compile_options(NCECommon INTERFACE /bigobj /wd4100 /wd4189 /wd4065 /wd4201 /wd4324 /GR- /W4 /permissive- /GF /w34388 /w34389 -Wno-unused-macros -Wno-zero-length-array -Wno-switch-default -Wno-reserved-identifier -Wno-unused-parameter -Wno-unused-variable -Wno-unused-private-field /Z7 -Wno-invalid-offsetof -Wno-deprecated-volatile -Wno-missing-prototypes -Wno-reserved-identifier -Wno-implicit-int-float-conversion -Wno-unsafe-buffer-usage -Wno-float-equal -Wno-shadow-field-in-constructor -Wno-gnu-anonymous-struct -Wno-nested-anon-types -Wno-double-promotion -Wno-shadow-uncaptured-local -Wno-nonportable-system-include-path -Wno-format-nonliteral -Wno-shorten-64-to-32 -Wno-ctad-maybe-unsupported -Wno-implicit-int-conversion -Wno-disabled-macro-expansion -Wno-comma -Wno-cast-function-type-strict -Wno-cast-function-type)
 		if(ARCHITECTURE STREQUAL "x64")
 			target_compile_options(NCECommon INTERFACE /d2archSSE42)
