@@ -94,12 +94,11 @@
 		},
 		{
 			"name": "linux-base-x64",
-			"generator": "Ninja",
 			"inherits": "base-x64",
 			"hidden": true,
 			"cacheVariables": {
-				"CMAKE_C_COMPILER": "clang",
-				"CMAKE_CXX_COMPILER": "clang++"
+				"CMAKE_C_COMPILER": "gcc",
+				"CMAKE_CXX_COMPILER": "gcc"
 			},
 			"condition": {
 				"type": "equals",
@@ -113,8 +112,8 @@
 			"inherits": "base-x86",
 			"hidden": true,
 			"cacheVariables": {
-				"CMAKE_C_COMPILER": "clang",
-				"CMAKE_CXX_COMPILER": "clang++",
+				"CMAKE_C_COMPILER": "gcc",
+				"CMAKE_CXX_COMPILER": "gcc",
 				"CMAKE_MAKE_PROGRAM": "Ninja"
 			},
 			"condition": {
@@ -124,7 +123,7 @@
 			}
 		},
 		{
-			"name": "x64-debug-linux-clang",
+			"name": "x64-debug-linux",
 			"displayName": "x64 Debug",
 			"inherits": "linux-base-x64",
 			"cacheVariables": {
@@ -132,7 +131,7 @@
 			}
 		},
 		{
-			"name": "x64-release-linux-clang",
+			"name": "x64-release-linux",
 			"displayName": "x64 Release",
 			"inherits": "linux-base-x64",
 			"cacheVariables": {
@@ -140,7 +139,7 @@
 			}
 		},
 		{
-			"name": "x86-debug-linux-clang",
+			"name": "x86-debug-linux",
 			"displayName": "x86 Debug",
 			"inherits": "linux-base-x86",
 			"cacheVariables": {
@@ -148,7 +147,7 @@
 			}
 		},
 		{
-			"name": "x86-release-linux-clang",
+			"name": "x86-release-linux",
 			"displayName": "x86 Release",
 			"inherits": "linux-base-x86",
 			"cacheVariables": {
